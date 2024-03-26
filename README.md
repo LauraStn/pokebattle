@@ -8,9 +8,9 @@ Le premier Pokémon à réduire les PV de l'autre à zéro remporte la partie.
 
 ## Structure du Projet
 index.html
-css
+
        style.css
-js
+
        script.js
 
 ## Auteur
