@@ -15,7 +15,9 @@ const text = document.querySelector(".list");
 const form = document.querySelector("form");
 const name1 = document.querySelector("#name1");
 const name2 = document.querySelector("#name2");
-
+const rulesBtn = document.querySelector("#button-rules");
+const rules = document.querySelector(".games-rules");
+console.log(rules);
 //Audio du combat
 const fightSong = document.createElement("audio");
 fightSong.src = "./media/fight-song.mp3";
@@ -87,6 +89,7 @@ startButton.addEventListener("click", (e) => {
   } else {
     text.innerText = `${name1.value} commence`;
     home.classList.add("hidden");
+    rules.classList.add("hidden");
     fightSong.play();
     player1.style.transform = "translateX(0px)"; //Transition d'apparition des pkmn en différé
     player1.style.transition = "transform 2s";
@@ -266,3 +269,7 @@ const createPokemon = (name, player, health, url) => {
       return null;
   }
 };
+//
+rulesBtn.addEventListener("click", () => {
+  rules.classList.toggle("visible");
+});

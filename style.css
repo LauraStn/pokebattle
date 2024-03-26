@@ -106,7 +106,8 @@ p {
   margin-top: 25px;
   color: rgb(125, 243, 125);
 }
-.modal {
+.modal,
+.games-rules {
   background-color: #365fac;
   visibility: hidden;
   position: absolute;
@@ -145,4 +146,13 @@ p {
   font-weight: 400;
   font-style: normal;
   font-size: 15px;
+}
+
+#button-rules {
+  z-index: 3;
+  position: absolute;
+  width: 130px;
+  margin: 30px;
+  color: #f4cc07;
+  background: #365fac;
 }
