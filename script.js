@@ -104,20 +104,18 @@ restart.addEventListener("click", () => {
 
 //La classe de pokémon de base
 class Pokemon {
-  constructor(name, life, power, url, player, health, shout) {
+  constructor(name, life, power, url, player, health) {
     this.name = name;
     this.life = life;
     this.power = power;
     this.url = url;
     this.player = player;
     this.health = health;
-    this.shout = shout;
 
     const playerChoice = this.getPlayerId(this.player.id);
 
     this.generatePlayer(
       this.generateImage(playerChoice, this.url),
-      this.generateSound(this.url),
       this.player
     );
   }
@@ -139,7 +137,6 @@ class Pokemon {
   }
   generateDamage(playerId, opponent) {
     const playerIdFound = this.getPlayerId(playerId);
-    console.log(playerIdFound);
     const image = new Image();
     image.src = "./images/anim-attack.gif";
     image.style.zIndex = "20";
@@ -155,9 +152,8 @@ class Pokemon {
     }, 500);
   }
 
-  generatePlayer(image, shout, player) {
+  generatePlayer(image, player) {
     player.appendChild(image);
-    player.appendChild(shout);
   }
 
   generateImage(position, url) {
@@ -173,13 +169,6 @@ class Pokemon {
       this.image.style.bottom = `${position.y}px`;
     };
     return image;
-  }
-
-  generateSound(url) {
-    const shout = new Audio();
-    shout.src = url;
-    shout.play();
-    return shout;
   }
   isAlive() {
     return this.life > 0;
@@ -205,8 +194,8 @@ class Pokemon {
 
 // Les classes des pokémons de différent types qui héritent de la base
 class Plant extends Pokemon {
-  constructor(name, life, power, url, player, health, shout) {
-    super(name, life, power, url, player, health, shout);
+  constructor(name, life, power, url, player, health) {
+    super(name, life, power, url, player, health);
   }
   attack(opponent) {
     if (opponent instanceof Water) {
@@ -221,8 +210,8 @@ class Plant extends Pokemon {
 }
 
 class Water extends Pokemon {
-  constructor(name, life, power, url, player, health, shout) {
-    super(name, life, power, url, player, health, shout);
+  constructor(name, life, power, url, player, health) {
+    super(name, life, power, url, player, health);
   }
   attack(opponent) {
     if (opponent instanceof Fire) {
@@ -236,8 +225,8 @@ class Water extends Pokemon {
 }
 
 class Fire extends Pokemon {
-  constructor(name, life, power, url, player, health, shout) {
-    super(name, life, power, url, player, health, shout);
+  constructor(name, life, power, url, player, health) {
+    super(name, life, power, url, player, health);
   }
   attack(opponent) {
     if (opponent instanceof Plant) {
@@ -251,8 +240,8 @@ class Fire extends Pokemon {
 }
 
 class Electric extends Pokemon {
-  constructor(name, life, power, url, player, health, shout) {
-    super(name, life, power, url, player, health, shout);
+  constructor(name, life, power, url, player, health) {
+    super(name, life, power, url, player, health);
   }
   attack(opponent) {
     if (opponent instanceof Water) {
@@ -263,16 +252,16 @@ class Electric extends Pokemon {
   }
 }
 //Fonction pour instancier les pkmn
-const createPokemon = (name, player, health, url, shout) => {
+const createPokemon = (name, player, health, url) => {
   switch (name) {
     case "salameche":
-      return new Fire(name, 100, 20, url, player, health, shout);
+      return new Fire(name, 100, 20, url, player, health);
     case "carapuce":
-      return new Water(name, 100, 20, url, player, health, shout);
+      return new Water(name, 100, 20, url, player, health);
     case "pikachu":
-      return new Electric(name, 100, 20, url, player, health, shout);
+      return new Electric(name, 100, 20, url, player, health);
     case "bulbizarre":
-      return new Plant(name, 100, 20, url, player, health, shout);
+      return new Plant(name, 100, 20, url, player, health);
     default:
       return null;
   }
