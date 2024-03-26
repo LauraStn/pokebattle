@@ -1,17 +1,17 @@
-Jeu de Combat Pokémon
+## Jeu de Combat Pokémon
 Ce projet est un jeu de combat au tour par tour mettant en scène des Pokémon. Il est développé en HTML, CSS et JavaScript.
 
-Comment jouer
-Choisissez votre Pokémon et celui de votre adversaire ainsi que vos pseudo.
-Faite combattre les Pokémon.
+## Comment jouer
+Choisissez vos Pokémons ainsi que vos pseudo, cliquez sur "Valider"
+Cliquez sur le bouton "attaquer" quand c'est votre tour pour faire combattre votre Pokémon.
 Le premier Pokémon à réduire les PV de l'autre à zéro remporte la partie.
 
-Structure du Projet
+## Structure du Projet
 index.html
 css
-style.css
+       style.css
 js
-script.js
+       script.js
 
-Auteur
+## Auteur
 Ce projet a été développé par Laura Santin.
