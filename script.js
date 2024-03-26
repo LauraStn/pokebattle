@@ -16,14 +16,17 @@ const form = document.querySelector("form");
 const name1 = document.querySelector("#name1");
 const name2 = document.querySelector("#name2");
 
+//Audio du combat
 const fightSong = document.createElement("audio");
 fightSong.src = "./media/fight-song.mp3";
 fightSong.volume = 0.05;
 
+//Audio de victoire
 const winSong = document.createElement("audio");
 winSong.src = "./media/win-song.mp3";
 winSong.volume = 0.05;
 
+//Audio d'animation de combat
 const animAttack = new Audio();
 animAttack.src = "./media/attack.mp3";
 
@@ -36,58 +39,56 @@ const x = form.addEventListener("submit", (e) => {
     formData.get("player1"),
     player1,
     health1,
-    `./images/${formData.get("player1")}-fight.gif`,
-    `./media/${formData.get("player1")}-cri.mp3`
+    `./images/${formData.get("player1")}-fight.gif`
   );
 
   const pokemon2 = createPokemon(
     formData.get("player2"),
     player2,
     health2,
-    `./images/${formData.get("player2")}-fight.gif`,
-    `./media/${formData.get("player2")}-cri.mp3`
+    `./images/${formData.get("player2")}-fight.gif`
   );
 
-  console.log(pokemon1);
-
+  //Ma fonction D'attaque
   const attack = (attacker, defender, attackerBtn, defenderBtn) => {
-    const player = attacker.player.id === "player1" ? `${name1}` : `${name2}`;
+    const player = attacker.player.id === "player1" ? `${name1}` : `${name2}`; //Récupère l'id du joueur
     text.innerText = `${attacker.name} de ${player} a attaqué ${defender.name}`;
     attacker.attack(defender);
-    // attacker.generateDamage(defender.player.id, defender.player);
-    animAttack.play();
+    animAttack.play(); // Joue l'audio d'attaque à chaque coup
     defender.pv(attacker);
     if (!defender.isAlive()) {
+      // Vérifie la vie du joueur
       defender.isDead();
       attack2.setAttribute("disabled", "");
       winInfos.innerText = `${player} a gagné avec ${attacker.name} !!`;
       winner.innerHTML = `<img src="./images/${attacker.name}-fight.gif">`;
-      modal.classList.add("visible");
+      modal.classList.add("visible"); //Affichage de la modal de victoire
       fightSong.pause();
       winSong.play();
       return;
     }
-    attackerBtn.setAttribute("disabled", "");
+    attackerBtn.setAttribute("disabled", ""); //Activation/Désactivation des boutons d'attaques
     defenderBtn.removeAttribute("disabled");
   };
 
   attack1.addEventListener("click", () => {
-    attack(pokemon1, pokemon2, attack1, attack2);
+    attack(pokemon1, pokemon2, attack1, attack2); //Bouton d'attaque du joueur 1
   });
 
   attack2.addEventListener("click", () => {
-    attack(pokemon2, pokemon1, attack2, attack1);
+    attack(pokemon2, pokemon1, attack2, attack1); //Bouton d'attaque du joueur 2
   });
 });
 
+//Lancement du combat à la soumission du formulaire
 startButton.addEventListener("click", (e) => {
   if (name1.value === "" && name2.value === "") {
-    alert("Veuillez entrer votre nom/pseudo");
+    alert("Veuillez entrer votre nom/pseudo"); //Empeche de démarrer le jeu avec les champs vides
   } else {
     text.innerText = `${name1.value} commence`;
     home.classList.add("hidden");
     fightSong.play();
-    player1.style.transform = "translateX(0px)";
+    player1.style.transform = "translateX(0px)"; //Transition d'apparition des pkmn en différé
     player1.style.transition = "transform 2s";
     player1.style.transitionDelay = "1s";
     player2.style.transform = "translateX(0px)";
@@ -96,10 +97,12 @@ startButton.addEventListener("click", (e) => {
   }
 });
 
+//Bouton pour rejouer qui apparait sur la modal de victoire
 restart.addEventListener("click", () => {
   location.assign("/");
 });
 
+//La classe de pokémon de base
 class Pokemon {
   constructor(name, life, power, url, player, health, shout) {
     this.name = name;
@@ -200,13 +203,17 @@ class Pokemon {
   }
 }
 
+// Les classes des pokémons de différent types qui héritent de la base
 class Plant extends Pokemon {
   constructor(name, life, power, url, player, health, shout) {
     super(name, life, power, url, player, health, shout);
   }
   attack(opponent) {
     if (opponent instanceof Water) {
+      //Chaque type de pkmn a des faiblesse et avantages sur d'autres types
       opponent.life -= this.power * 2;
+    } else if (opponent instanceof Fire) {
+      opponent.life -= this.power / 2;
     } else {
       super.attack(opponent);
     }
@@ -220,6 +227,8 @@ class Water extends Pokemon {
   attack(opponent) {
     if (opponent instanceof Fire) {
       opponent.life -= this.power * 2;
+    } else if (opponent instanceof Plant) {
+      opponent.life -= this.power / 2;
     } else {
       super.attack(opponent);
     }
@@ -233,6 +242,8 @@ class Fire extends Pokemon {
   attack(opponent) {
     if (opponent instanceof Plant) {
       opponent.life -= this.power * 2;
+    } else if (opponent instanceof Water) {
+      opponent.life -= this.power / 2;
     } else {
       super.attack(opponent);
     }
@@ -251,7 +262,7 @@ class Electric extends Pokemon {
     }
   }
 }
-
+//Fonction pour instancier les pkmn
 const createPokemon = (name, player, health, url, shout) => {
   switch (name) {
     case "salameche":
