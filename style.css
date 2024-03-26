@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.game {
+  display: flex;
+  position: relative;
+}
+.homePage {
+  width: 100%;
+  height: 100vh;
+  color: aliceblue;
+  background: url(./images/homeBg.jpg);
+  background-size: cover;
+  position: absolute;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.fight {
+  width: 100%;
+  height: 100vh;
+  background: url(./images/fond2-ezgif.com-crop.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: flex;
+}
+#player1,
+#player2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+}
+
+#player1 {
+  transform: translateX(-550px);
+}
+#player2 {
+  transform: translateX(550px);
+}
+
+#player1 img {
+  transform: scaleX(-1);
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 30px;
+}
+.start,
+.restart {
+  width: 100px;
+  align-self: center;
+  margin: 30px;
+  color: #f4cc07;
+  background: #365fac;
+}
+.joueurs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  gap: 50px;
+  padding-inline: 300px;
+}
+select {
+  width: 100px;
+  align-self: center;
+  color: #f4cc07;
+  background: #365fac;
+}
+.infos1,
+.infos2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 50px;
+  width: 50%;
+  margin-inline: auto;
+  height: 350px;
+}
+.health1,
+.health2 {
+  width: 100%;
+  height: 20px;
+  background-color: rgb(125, 243, 125);
+  font-weight: 900;
+  align-self: self-start;
+}
+p {
+  margin-top: 25px;
+  color: rgb(125, 243, 125);
+}
+.modal {
+  background-color: #365fac;
+  visibility: hidden;
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+  top: 40px;
+  width: 700px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+  border-radius: 20px;
+  box-shadow: 1px 7px 8px 5px #000000;
+}
+.modal p {
+  color: #f4cc07;
+  font-size: 30px;
+}
+.visible {
+  visibility: visible;
+}
+.list {
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+  color: #f4cc07;
+  font-size: 30px;
+}

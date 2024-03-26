@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokéBattle</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="game">
+      <div class="modal">
+        <p class="win-infos"></p>
+        <div class="winner"></div>
+        <button class="restart" type="button">Rejouer</button>
+      </div>
+      <div class="fight">
+        <p class="list">Le Joueur 1 commence</p>
+        <div id="player1">
+          <div class="infos1">
+            <button class="attack1" type="button">Attaque</button>
+            <p>Joueur 1</p>
+            <div class="health1" id="health1">
+              <p class="health1-stat">100/100PV</p>
+            </div>
+          </div>
+        </div>
+        <div id="player2">
+          <div class="infos2">
+            <button class="attack2" disabled type="button">Attaque</button>
+            <p>Joueur 2</p>
+            <div class="health2" id="health2">
+              <p class="health2-stat">100/100PV</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="homePage">
+        <div class="title">
+          <img src="./images/logo.png" alt="logoPokebattle" />
+          <img src="./images/choix.png" alt="logochoixpokemon" />
+        </div>
+        <form>
+          <label for="choice">
+            <div class="joueurs">
+              <img src="./images/joueur1.png" alt="logojoueur1" />
+              <input
+                placeholder="Entrez votre pseudo"
+                type="text"
+                name="player1Name"
+                id="name1"
+                required
+              />
+              <select name="player1" id="player1Choice">
+                <option value="salameche">Salamèche</option>
+                <option value="pikachu">Pikachu</option>
+                <option value="bulbizarre">Bulbizarre</option>
+                <option value="carapuce">Carapuce</option>
+              </select>
+            </div>
+            <div class="joueurs">
+              <img src="./images/joueur2.png" alt="logojoueur2" />
+              <input
+                placeholder="Entrez votre pseudo"
+                type="text"
+                name="player2Name"
+                id="name2"
+                required
+              />
+              <select name="player2" id="player2Choice">
+                <option value="salameche">Salamèche</option>
+                <option value="pikachu">Pikachu</option>
+                <option value="bulbizarre">Bulbizarre</option>
+                <option value="carapuce">Carapuce</option>
+              </select>
+            </div>
+          </label>
+          <input class="start" type="submit" value="Valider" />
+        </form>
+        <img src="./images/copyright.png" alt="logoLaura" />
+      </div>
+    </main>
+  </body>
+  <script src="./script.js"></script>
+</html>
